@@ -120,8 +120,10 @@ class AudioMatcher:
 	
 
 	def distance(self, sample1, sample2):
-		sample1Int = int(sample1.hex(), 16)
-		sample2Int = int(sample2.hex(), 16)
+		sample1Hex = sample1.hex()
+		sample2Hex = sample2.hex()
+		sample1Int = int(sample1Hex, 16) if sample1Hex != "" else 0
+		sample2Int = int(sample2Hex, 16) if sample2Hex != "" else 0
 		if(sample1Int > sample2Int):
 			return min(sample1Int - sample2Int, self.maxValue - (sample1Int - sample2Int - 1))
 		else:
